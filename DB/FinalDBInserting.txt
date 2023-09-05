@@ -1,0 +1,23 @@
+INSERT INTO `electromart`.`roles` (`id`, `role`) VALUES ('1', 'a');
+INSERT INTO `electromart`.`roles` (`id`, `role`) VALUES ('2', 'v');
+INSERT INTO `electromart`.`roles` (`id`, `role`) VALUES ('3', 'c');
+
+
+INSERT INTO `electromart`.`login` (`id`, `role_id`, `fname`, `lname`, `username`, `password`, `contact_no`, `email`, `address`, `city`, `status`, `wallet`) VALUES ('1', '1', 'prashant', 'awate', 'prashant123', 'prashant@123', '8806171700', 'prashant@gmail.com', 'Wagholi,pune', 'Pune', '1', '2000');
+
+
+INSERT INTO `electromart`.`categories` (`id`, `name`) VALUES ('1', 'Television & Accessories');
+INSERT INTO `electromart`.`categories` (`id`, `name`) VALUES ('2', 'Phones & Wearable');
+INSERT INTO `electromart`.`categories` (`id`, `name`) VALUES ('3', 'Computers & Tablets');
+INSERT INTO `electromart`.`categories` (`id`, `name`) VALUES ('4', 'Smart Devices');
+
+INSERT INTO `electromart`.`brands` (`id`, `name`) VALUES ('1', 'Apple');
+INSERT INTO `electromart`.`brands` (`id`, `name`) VALUES ('2', 'HP');
+INSERT INTO `electromart`.`brands` (`id`, `name`) VALUES ('3', 'Dell');
+INSERT INTO `electromart`.`brands` (`id`, `name`) VALUES ('4', 'LG');
+INSERT INTO `electromart`.`brands` (`id`, `name`) VALUES ('5', 'Asus');
+INSERT INTO `electromart`.`brands` (`id`, `name`) VALUES ('6', 'Bajaj');
+INSERT INTO `electromart`.`brands` (`id`, `name`) VALUES ('7', 'Vivo');
+INSERT INTO `electromart`.`brands` (`id`, `name`) VALUES ('8', 'Mi');
+INSERT INTO `electromart`.`brands` (`id`, `name`) VALUES ('9', 'Samsung');
+INSERT INTO `electromart`.`brands` (`id`, `name`) VALUES ('10', 'Nothing');

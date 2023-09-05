@@ -1,0 +1,129 @@
+drop database electromart;
+create database electromart;
+use electromart;
+
+drop table if exists roles;
+
+create table roles(
+id int primary key auto_increment,
+role varchar(1) not null
+);
+
+
+DROP TABLE IF EXISTS login;
+
+CREATE TABLE login(
+   id int primary key AUTO_INCREMENT ,
+   role_id int not null,	
+   fname varchar(40) not NULL,
+   lname varchar(40) not NULL,
+   username varchar(40) unique not NULL,
+   password varchar(40) not NULL,
+   contact_no varchar(15) NOT NULL,
+   email varchar(40) not NULL,
+   address varchar(255) not NULL,
+   city varchar(40) not NULL,
+   status tinyint not null,
+   wallet double default 0,
+   constraint fk_roleid foreign key(role_id) references roles(id)
+);
+
+
+DROP TABLE IF EXISTS vendors;
+
+ CREATE TABLE vendors (
+  id int primary key AUTO_INCREMENT,
+  login_id int NOT NULL,
+  shop_name varchar(40) DEFAULT NULL,
+  shopact_licence varchar(40) NOT NULL,
+  aadhar bigint NOT NULL,
+  constraint fk_vregid foreign key (login_id) references login(id)
+); 
+
+
+DROP TABLE IF EXISTS customers;
+
+CREATE TABLE customers(
+   id int primary key AUTO_INCREMENT,
+   login_id int NOT NULL,
+   constraint fk_cregid foreign key (login_id) references login(id)
+);
+
+
+DROP TABLE IF EXISTS categories;
+
+CREATE TABLE categories(
+  id int primary key AUTO_INCREMENT,
+  name varchar(40) DEFAULT NULL
+ );
+
+DROP TABLE IF EXISTS brands;
+
+CREATE TABLE brands(
+id int primary key AUTO_INCREMENT,
+name varchar(40) DEFAULT NULL
+);
+
+
+DROP TABLE IF EXISTS products;
+
+CREATE TABLE products (
+  id int primary key AUTO_INCREMENT,
+  cat_id int DEFAULT NULL,
+  brand_id int DEFAULT NULL,
+  v_id int DEFAULT NULL,
+  name varchar(100) NOT NULL,
+  description varchar(255) DEFAULT NULL,
+  price double NOT NULL,
+  stock_level int NOT NULL,
+  img_url longblob,
+  constraint fk_catid foreign key (cat_id) references categories(id),
+  constraint fk_bid foreign key (brand_id) references brands(id),
+  constraint fk_vid foreign key (v_id) references vendors(id)
+);
+
+
+DROP TABLE IF EXISTS orders;
+
+CREATE TABLE orders(
+  id int primary key AUTO_INCREMENT,
+  cust_id int NOT NULL,
+  date date NOT NULL,
+  total_amount double NOT NULL,
+  shipping_address varchar(255) DEFAULT NULL,
+  constraint fk_ocustid foreign key (cust_id) references customers(id)
+);
+
+DROP TABLE IF EXISTS ordereditems;
+
+CREATE TABLE ordereditems(
+  id int primary key AUTO_INCREMENT,
+  order_id int NOT NULL,
+  prod_id int NOT NULL,
+  quantity int DEFAULT NULL,
+  price double NOT NULL,
+  constraint fk_ooid foreign key (order_id) references orders(id),
+  constraint fk_opid foreign key (prod_id) references products(id)
+);
+
+DROP TABLE IF EXISTS payments;
+
+CREATE TABLE payments(
+   id int primary key AUTO_INCREMENT,
+   order_id int NOT NULL,
+   date date NOT NULL,
+   amount double NOT NULL,
+   constraint fk_poid foreign key (order_id) references orders(id)
+);
+
+DROP TABLE IF EXISTS reviews;
+
+CREATE TABLE reviews(
+   id int primary key AUTO_INCREMENT,
+   cust_id int NOT NULL,
+   prod_id int NOT NULL,
+   rating int NOT NULL,
+   constraint fk_rcid foreign key (cust_id) references customers(id),
+   constraint fk_rpid foreign key (prod_id) references products(id)
+);
+
