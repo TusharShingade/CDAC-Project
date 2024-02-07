@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Electro_Mart.props" />
+</Project>
